@@ -7,42 +7,48 @@
 <meta name="description" content="Redes sociais e produtos favoritos de Nycole Cedraz.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;1,6..96,400;1,6..96,500&family=Manrope:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,400;1,500&family=Manrope:wght@400;500;600;700&display=swap">
 <style>
-  /* Layout: coluna única estilo "nécessaire" — perfil no topo, redes em pílulas, produtos numa prateleira 2x */
+  /* Layout: coluna única "clean girl" — gradiente rosé→branco, pérolas flutuando (three.js) atrás, entrada suave (GSAP) */
   :root {
     --bg: #F6EEF0;
-    --surface: #FFFFFF;
+    --bg-top: #EBD3DB;
+    --bg-bottom: #FFFFFF;
+    --surface: rgba(255,255,255,.72);
     --ink: #2A1620;
     --muted: #8A6C78;
     --line: #E6D6DC;
     --accent: #B8325A;
     --accent-ink: #FFFFFF;
-    --font-display: "Bodoni Moda", "Didot", "Times New Roman", serif;
+    --font-display: "Playfair Display", "Didot", Georgia, serif;
     --font-body: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --bg: #1A1015; --surface: #24171E; --ink: #F5E6EC; --muted: #B596A3;
+      --bg: #1A1015; --bg-top: #3A2230; --bg-bottom: #140C10; --surface: rgba(36,23,30,.72); --ink: #F5E6EC; --muted: #B596A3;
       --line: #3A2730; --accent: #F06B92; --accent-ink: #1A1015; color-scheme: dark;
     }
   }
   :root[data-theme="dark"] {
-    --bg: #1A1015; --surface: #24171E; --ink: #F5E6EC; --muted: #B596A3;
+    --bg: #1A1015; --bg-top: #3A2230; --bg-bottom: #140C10; --surface: rgba(36,23,30,.72); --ink: #F5E6EC; --muted: #B596A3;
     --line: #3A2730; --accent: #F06B92; --accent-ink: #1A1015; color-scheme: dark;
   }
 
   * { box-sizing: border-box; }
   body {
     margin: 0;
-    background: var(--bg);
+    min-height: 100vh;
+    background: var(--bg-bottom) linear-gradient(180deg, var(--bg-top) 0%, var(--bg) 38%, var(--bg-bottom) 100%) no-repeat;
+    background-attachment: fixed;
     color: var(--ink);
     font-family: var(--font-body);
     font-size: 15px;
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
   }
+  #pearls { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
   .page {
+    position: relative; z-index: 1;
     max-width: 440px;
     margin: 0 auto;
     padding-inline: 20px;
@@ -71,7 +77,7 @@
     margin: 4px 0 0;
     font-family: var(--font-display);
     font-weight: 500;
-    font-size: clamp(34px, 9vw, 42px);
+    font-size: clamp(36px, 10vw, 46px);
     line-height: 1.05;
     letter-spacing: -0.01em;
     text-wrap: balance;
@@ -86,6 +92,7 @@
     padding: 14px 18px;
     border-radius: 999px;
     background: var(--surface);
+    -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
     border: 1px solid var(--line);
     color: var(--ink);
     text-decoration: none;
@@ -112,6 +119,7 @@
     background: var(--surface);
     border: 1px solid var(--line);
     border-radius: 18px;
+    -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
     color: var(--ink); text-decoration: none;
     min-width: 0;
     transition: transform .2s ease, border-color .2s ease;
@@ -136,6 +144,7 @@
 </style>
 </head>
 <body>
+<canvas id="pearls" aria-hidden="true"></canvas>
 <main class="page">
 
   <header class="profile">
@@ -171,6 +180,8 @@
   <footer>© Nycole Cedraz</footer>
 </main>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
   // ====== PRODUTOS ======
   // Para adicionar um produto, copie um bloco { ... } e preencha.
@@ -200,6 +211,76 @@
         <span class="title">Produto favorito</span>
       </div>`).join('');
     document.getElementById('shelf-count').textContent = 'Em breve';
+  }
+  // ====== MOVIMENTO (leve: só roda se as bibliotecas carregarem e sem "reduzir movimento") ======
+  const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (window.gsap && !calm) {
+    gsap.from('.avatar', { scale: .85, opacity: 0, duration: 1.1, ease: 'power3.out' });
+    gsap.from('.name, .bio', { y: 16, opacity: 0, duration: 1, stagger: .12, delay: .15, ease: 'power3.out' });
+    gsap.from('.social', { y: 18, opacity: 0, duration: .9, stagger: .1, delay: .35, ease: 'power3.out' });
+    gsap.from('.shelf-head, .product', { y: 22, opacity: 0, duration: .9, stagger: .07, delay: .55, ease: 'power3.out' });
+    gsap.to('.avatar', { rotate: 360, duration: 40, repeat: -1, ease: 'none' });
+    gsap.set('.avatar > *', { rotate: 0 });
+    gsap.to('.avatar > *', { rotate: -360, duration: 40, repeat: -1, ease: 'none' });
+  }
+
+  if (window.THREE) {
+    const canvas = document.getElementById('pearls');
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: false });
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(60, 1, 1, 100);
+    camera.position.z = 30;
+
+    // Textura de pérola: brilho radial suave desenhado num canvas pequeno
+    const c = document.createElement('canvas'); c.width = c.height = 64;
+    const g = c.getContext('2d'), grd = g.createRadialGradient(26, 26, 2, 32, 32, 32);
+    grd.addColorStop(0, 'rgba(255,255,255,1)');
+    grd.addColorStop(.45, 'rgba(255,236,242,.7)');
+    grd.addColorStop(1, 'rgba(255,236,242,0)');
+    g.fillStyle = grd; g.fillRect(0, 0, 64, 64);
+
+    const N = 70, pos = new Float32Array(N * 3), speed = new Float32Array(N);
+    for (let i = 0; i < N; i++) {
+      pos[i*3] = (Math.random() - .5) * 50;
+      pos[i*3+1] = (Math.random() - .5) * 50;
+      pos[i*3+2] = (Math.random() - .5) * 20;
+      speed[i] = .008 + Math.random() * .02;
+    }
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+    const mat = new THREE.PointsMaterial({
+      size: 1.6, map: new THREE.CanvasTexture(c), transparent: true,
+      depthWrite: false, opacity: .85, color: 0xF3C9D6
+    });
+    const pts = new THREE.Points(geo, mat);
+    scene.add(pts);
+
+    const resize = () => {
+      const w = innerWidth, h = innerHeight;
+      renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix();
+    };
+    addEventListener('resize', resize); resize();
+
+    let mx = 0, my = 0;
+    addEventListener('pointermove', e => { mx = e.clientX / innerWidth - .5; my = e.clientY / innerHeight - .5; });
+
+    const tick = t => {
+      if (!calm) {
+        for (let i = 0; i < N; i++) {
+          pos[i*3+1] += speed[i];
+          pos[i*3] += Math.sin(t * .0004 + i) * .004;
+          if (pos[i*3+1] > 25) pos[i*3+1] = -25;
+        }
+        geo.attributes.position.needsUpdate = true;
+        pts.rotation.y += (mx * .25 - pts.rotation.y) * .03;
+        pts.rotation.x += (my * .15 - pts.rotation.x) * .03;
+      }
+      renderer.render(scene, camera);
+      if (!calm) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
   }
 </script>
 </body>
