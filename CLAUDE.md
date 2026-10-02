@@ -13,5 +13,5 @@ Sergio Collalto: designer (18 anos), estrategista de marca para personal trainer
 - Objetivo: o analisado aceitar a collab do post e trazer a audiência dele.
 - Prioridade: profissionais brasileiros.
 - Faixa ideal: 500 mil a 1 milhão de seguidores. Perfis muito grandes tendem a recusar (ex: Carol Vaz recusou).
-- Já feitos: Ricardo Lapa, Carol Vaz (2 posts, recusou), Leandro Twin (aceitou, funcionou bem), Kayla Itsines, Heavy Mike, Marcio Atalla.
+- Já feitos: Ricardo Lapa, Carol Vaz (2 posts, recusou), Leandro Twin (aceitou, funcionou bem), Kayla Itsines, Heavy Mike, Marcio Atalla, Maíra Cardi (peça de autoridade, sem collab).
 - Peças ficam em `conteudos/analises/`.
