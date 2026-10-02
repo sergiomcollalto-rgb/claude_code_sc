@@ -143,6 +143,32 @@
   .product.soon { border-style: dashed; }
   .product.soon .title { color: var(--muted); font-weight: 500; }
 
+  /* Vitrine (loja completa) */
+  .storefront {
+    display: flex; align-items: center; gap: 16px;
+    padding: 16px 18px;
+    border-radius: 22px;
+    background: var(--surface);
+    -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+    border: 1px solid var(--accent);
+    color: var(--ink); text-decoration: none;
+    transition: transform .2s ease;
+  }
+  .storefront:hover { transform: translateY(-2px); }
+  .storefront:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .storefront .bag {
+    flex: none; width: 52px; height: 52px; border-radius: 16px;
+    display: grid; place-items: center;
+    background: var(--accent); color: var(--accent-ink);
+  }
+  .storefront .bag svg { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 1.6; }
+  .storefront .txt { display: flex; flex-direction: column; min-width: 0; }
+  .storefront strong { font-family: var(--font-display); font-style: italic; font-weight: 500; font-size: 21px; line-height: 1.2; }
+  .storefront small { color: var(--muted); font-size: 13px; }
+  .storefront .arrow { margin-left: auto; color: var(--accent); font-size: 20px; }
+  .shelf { display: flex; flex-direction: column; gap: 12px; }
+  .products:empty { display: none; }
+
   footer { text-align: center; font-size: 12px; color: var(--muted); }
 
   @media (prefers-reduced-motion: reduce) { .social, .product { transition: none; } }
@@ -178,7 +204,14 @@
       <h2 id="shelf-title">Uso no dia a dia</h2>
       <span id="shelf-count"></span>
     </div>
-    <div class="products" id="products"></div>
+    <div class="shelf">
+      <a class="storefront" id="storefront" href="https://collshp.com/nycolecedraz902?view=storefront" target="_blank" rel="noopener">
+        <span class="bag"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1.2 12H6.2L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></span>
+        <span class="txt"><strong>Minha vitrine</strong><small>Tudo o que eu uso e indico, num lugar só</small></span>
+        <span class="arrow" aria-hidden="true">→</span>
+      </a>
+      <div class="products" id="products"></div>
+    </div>
   </section>
 
   <footer>© Nycole Cedraz</footer>
@@ -207,14 +240,6 @@
         <span class="cta">Ver produto →</span>
       </a>`).join('');
     document.getElementById('shelf-count').textContent = PRODUTOS.length + (PRODUTOS.length === 1 ? ' item' : ' itens');
-  } else {
-    list.innerHTML = Array.from({length: 4}, () => `
-      <div class="product soon">
-        <div class="thumb">${icon}</div>
-        <span class="cat">Em breve</span>
-        <span class="title">Produto favorito</span>
-      </div>`).join('');
-    document.getElementById('shelf-count').textContent = 'Em breve';
   }
   // ====== MOVIMENTO (leve: só roda se as bibliotecas carregarem e sem "reduzir movimento") ======
   const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -223,7 +248,7 @@
     gsap.from('.avatar', { scale: .85, opacity: 0, duration: 1.1, ease: 'power3.out' });
     gsap.from('.name, .bio', { y: 16, opacity: 0, duration: 1, stagger: .12, delay: .15, ease: 'power3.out' });
     gsap.from('.social', { y: 18, opacity: 0, duration: .9, stagger: .1, delay: .35, ease: 'power3.out' });
-    gsap.from('.shelf-head, .product', { y: 22, opacity: 0, duration: .9, stagger: .07, delay: .55, ease: 'power3.out' });
+    gsap.from('.shelf-head, .storefront, .product', { y: 22, opacity: 0, duration: .9, stagger: .07, delay: .55, ease: 'power3.out' });
     gsap.to('.avatar', { rotate: 360, duration: 40, repeat: -1, ease: 'none' });
     gsap.set('.avatar > *', { rotate: 0 });
     gsap.to('.avatar > *', { rotate: -360, duration: 40, repeat: -1, ease: 'none' });
