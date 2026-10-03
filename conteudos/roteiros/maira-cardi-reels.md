@@ -3,7 +3,7 @@ ROTEIRO DE VÍDEO — Maíra Cardi e a escada de valor
 DIAGNÓSTICO RÁPIDO
 O Seca Você vendia a mesma promessa em degraus de preço, e no degrau mais alto o personal era um item do pacote. O vídeo ensina a técnica da escada de valor pro personal trainer que ainda vende só hora-aula.
 
-DURAÇÃO ESTIMADA: cerca de 75 segundos (por volta de 190 palavras a 2,5 palavras por segundo)
+DURAÇÃO ESTIMADA: cerca de 85 segundos (por volta de 210 palavras a 2,5 palavras por segundo)
 
 [FALA — BLOCO 1: HOOK]
 No pacote mais caro da Maíra Cardi, o personal era um item da lista.
