@@ -97,6 +97,8 @@ O cartório registrou em 1982 o nome que o país ia repetir por mais de quarenta
 📸 buscar por "Lula vitória [ANO] comemoração" ou "Lula multidão comício"
 
 SLIDE 11 — CTA FINAL
+Você pode votar contra. Pode não gostar. Mas vai lembrar pra sempre quem ele é e qual é o nome dele.
+
 A vida que você sonha começa com um nome que aguenta o peso dela. Eu mostro como. Siga @sergiocollalto.
 📸 fundo sólido ou retrato discreto, consistente com o card de follow
 
@@ -110,12 +112,14 @@ Fica a lição pra qualquer profissional, de qualquer área e de qualquer lado: 
 
 O cartório registrou em 1982 o nome que o país ia repetir por mais de quarenta anos.
 
-Siga @sergiocollalto
+Você pode votar contra. Pode não gostar. Mas vai lembrar pra sempre quem ele é e qual é o nome dele.
+
+A vida que você sonha começa com um nome que aguenta o peso dela. Eu mostro como. Siga @sergiocollalto
 
 #marcapessoal #branding #posicionamento #estrategiademarca #marketingpolitico #eleicoes2026 #nomeforte #empreendedorismo #autoridade
 
 NOTA DE AUDITORIA
-Conferidos os 10 itens da revisão Humanizer. Sem travessões no texto (os de "SLIDE X —" são estruturais), sem "não é sobre X, é sobre Y", fechamento concreto e exclusivo do caso. Slide 5 com CTA "quer/siga" e slide 11 com a variação 6 do banco, ambos com "Siga @sergiocollalto". Peça escrita como análise de marca, sem juízo sobre governo ou ideologia, com a mesma estrutura e o mesmo tom da peça do cenário Flávio. Campos [DATA], [X] e [ANO] devem ser preenchidos com o resultado oficial do TSE. Idade de 81 anos considera a posse em janeiro de 2027 (nascimento em 27/10/1945).
+Conferidos os 10 itens da revisão Humanizer. Sem travessões no texto (os de "SLIDE X —" são estruturais), sem "não é sobre X, é sobre Y", fechamento concreto e exclusivo do caso. Slide 5 com CTA "quer/siga" e slide 11 com a frase de fechamento definida pelo Sergio ("Você pode votar contra...") seguida da variação 6 do banco, ambos com "Siga @sergiocollalto". Peça escrita como análise de marca, sem juízo sobre governo ou ideologia, com a mesma estrutura e o mesmo tom da peça do cenário Flávio. Campos [DATA], [X] e [ANO] devem ser preenchidos com o resultado oficial do TSE. Idade de 81 anos considera a posse em janeiro de 2027 (nascimento em 27/10/1945).
 
 BANCO DE PRÓXIMOS CASOS
 
