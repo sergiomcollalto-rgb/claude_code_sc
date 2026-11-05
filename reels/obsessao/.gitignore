@@ -1,0 +1,5 @@
+saida/
+clips/*
+!clips/.gitkeep
+fonts/*
+!fonts/.gitkeep
