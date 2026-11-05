@@ -10,7 +10,7 @@ B-roll: coloque os vídeos em clips/ com os nomes shot1.mp4 ... shot6.mp4
 com o nome da cena, pra servir de guia de edição.
 
 Fonte: coloque o arquivo da Advercase em fonts/ (qualquer .otf ou .ttf).
-Sem ele, o script usa Inter Display Bold como substituta.
+Sem ele, o script usa a Unbounded (candidatas/) como substituta.
 """
 
 import glob
@@ -53,7 +53,7 @@ def fonte_principal():
     achadas = sorted(glob.glob(os.path.join(ROOT, "fonts", "*.[ot]tf")))
     if achadas:
         return achadas[0], True
-    return "/usr/share/fonts/opentype/inter/InterDisplay-Bold.otf", False
+    return os.path.join(ROOT, "candidatas", "Unbounded.ttf"), False
 
 
 def montar_timeline():
@@ -114,7 +114,8 @@ def main():
             arq = os.path.join(tmp, f"w{i}.txt")
             with open(arq, "w") as f:
                 f.write(palavra)
-            tamanho = 190 if chave else 140
+            # fontes largas: limita o tamanho pra palavra caber em ~86% da largura
+            tamanho = min(150 if chave else 112, int(W * 0.86 / (len(palavra) * 0.86)))
             filtros.append(
                 f"drawtext=fontfile={fonte}:textfile={arq}:expansion=none:"
                 f"fontsize={tamanho}:fontcolor=white:x=(w-tw)/2:y=(h-th)/2:"
